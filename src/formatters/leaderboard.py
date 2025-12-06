@@ -205,12 +205,31 @@ def build_leaderboard_blocks(
     # Score explanation (only for score view)
     if sort_by == "score":
         num_members = len(members)
+        # Build explanation based on leaderboard size
+        first_pts = num_members
+        
+        if num_members >= 3:
+            explanation = (
+                f"ℹ️ *Local Score:* Points per star based on completion order.  "
+                f"1st: N pts ({first_pts}), 2nd: N-1 pts ({num_members - 1}), "
+                f"3rd: N-2 pts ({num_members - 2}), etc."
+            )
+        elif num_members == 2:
+            explanation = (
+                f"ℹ️ *Local Score:* Points per star based on completion order.  "
+                f"1st: N pts ({first_pts}), 2nd: N-1 pts ({num_members - 1})."
+            )
+        else:  # num_members == 1
+            explanation = (
+                f"ℹ️ *Local Score:* Points per star based on completion order.  "
+                f"1st: N pts ({first_pts})."
+            )
+        
         blocks.append({
             "type": "context",
             "elements": [{
                 "type": "mrkdwn",
-                "text": f"ℹ️ *Local Score:* Points per star based on completion order. "
-                        f"1st: {num_members} pts, 2nd: {num_members-1} pts, 3rd: {num_members-2} pts, etc."
+                "text": explanation
             }]
         })
 
