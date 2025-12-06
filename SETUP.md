@@ -73,6 +73,14 @@ This guide will walk you through setting up the AoC Slack bot from scratch.
 
 **Note**: Your session cookie is like a password - keep it secure! Don't commit it to version control.
 
+### Get Your Leaderboard Code
+
+1. Go to your private leaderboard: `https://adventofcode.com/2025/leaderboard/private`
+2. Find your leaderboard's join code (format: `5123211-abc123fg`)
+3. Copy the **entire code** including the hyphen and suffix
+
+**Note**: You can use just the owner ID (first part) if you don't want to expose the full join code, but then `/join-info` won't show a working code.
+
 ## Step 6: Set Up the Bot
 
 ### Clone or Navigate to the Bot Directory
@@ -109,7 +117,8 @@ SLACK_CHANNEL_ID=C1234567890
 
 # AoC credentials (from Step 5)
 AOC_SESSION_COOKIE=your_long_session_cookie_here
-AOC_LEADERBOARD_ID=5123211
+# Full join code (format: OWNER_ID-UNIQUE_CODE, or just OWNER_ID)
+AOC_LEADERBOARD_CODE=5123211-abc123fg
 AOC_YEAR=2025
 
 # User-Agent for AoC API (REQUIRED - include your contact info!)
@@ -183,7 +192,7 @@ Your app needs these OAuth scopes:
 
 ### "Failed to fetch leaderboard"
 - Verify your `AOC_SESSION_COOKIE` is correct and not expired
-- Check your `AOC_LEADERBOARD_ID` matches your private leaderboard
+- Check your `AOC_LEADERBOARD_CODE` matches your private leaderboard
 - Ensure your AoC account has access to the leaderboard
 
 ### Slash commands not working

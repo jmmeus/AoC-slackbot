@@ -13,7 +13,7 @@ Go to https://api.slack.com/apps
 ### 2. Get Tokens & IDs (5 minutes)
 - **Channel ID**: Right-click channel → View channel details → Copy ID
 - **Session Cookie**: Login to adventofcode.com → F12 → Application/Storage → Cookies → Copy `session` value
-- **Leaderboard ID**: Your private leaderboard ID
+- **Leaderboard Code**: Your private leaderboard join code (format: 5123211-abc123fg)
 
 ### 3. Install & Configure (2 minutes)
 ```bash
@@ -40,7 +40,7 @@ SLACK_BOT_TOKEN=xoxb-123456...
 SLACK_APP_TOKEN=xapp-123456...
 SLACK_CHANNEL_ID=C1234567890
 AOC_SESSION_COOKIE=53616c7465645f5f...
-AOC_LEADERBOARD_ID=5123213
+AOC_LEADERBOARD_CODE=5123211-abc123fg
 AOC_YEAR=2025
 POLL_INTERVAL_SECONDS=1200
 ```

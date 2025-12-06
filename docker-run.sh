@@ -17,7 +17,7 @@ if [ ! -f .env ]; then
     echo "   - SLACK_APP_TOKEN"
     echo "   - SLACK_CHANNEL_ID"
     echo "   - AOC_SESSION_COOKIE"
-    echo "   - AOC_LEADERBOARD_ID"
+    echo "   - AOC_LEADERBOARD_CODE"
     echo "   - AOC_USER_AGENT (include your contact info!)"
     echo ""
     echo "Then run this script again: ./docker-run.sh"

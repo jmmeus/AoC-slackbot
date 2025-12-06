@@ -23,7 +23,7 @@ class AoCAPIClient:
 
         Args:
             session_cookie: Your AoC session cookie
-            leaderboard_id: Private leaderboard ID
+            leaderboard_id: Private leaderboard owner ID (numeric only, no suffix)
             year: AoC year (default: 2025)
             use_mock: Use mock data instead of real API (for development)
             user_agent: Custom User-Agent string (should include contact info)

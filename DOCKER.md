@@ -132,7 +132,7 @@ Fill in your actual values:
 - `SLACK_APP_TOKEN`
 - `SLACK_CHANNEL_ID`
 - `AOC_SESSION_COOKIE`
-- `AOC_LEADERBOARD_ID`
+- `AOC_LEADERBOARD_CODE`
 - `AOC_USER_AGENT` (important - include contact info!)
 
 #### 4. Start Bot
@@ -190,7 +190,7 @@ fly secrets set SLACK_BOT_TOKEN=xoxb-...
 fly secrets set SLACK_APP_TOKEN=xapp-...
 fly secrets set SLACK_CHANNEL_ID=C...
 fly secrets set AOC_SESSION_COOKIE=...
-fly secrets set AOC_LEADERBOARD_ID=YOUR_LEADERBOARD_ID
+fly secrets set AOC_LEADERBOARD_CODE=5123211-abc123fg
 fly secrets set AOC_USER_AGENT="AoC-Slack-Bot/1.0 (+https://your-contact)"
 
 # Deploy

@@ -31,7 +31,7 @@ def validate_env_vars():
         'SLACK_APP_TOKEN',
         'SLACK_CHANNEL_ID',
         'AOC_SESSION_COOKIE',
-        'AOC_LEADERBOARD_ID'
+        'AOC_LEADERBOARD_CODE'
     ]
 
     missing = [var for var in required_vars if not os.getenv(var)]
@@ -54,8 +54,12 @@ async def main():
     channel_id = os.getenv("SLACK_CHANNEL_ID")
     admin_user_id = os.getenv("ADMIN_USER_ID")
     session_cookie = os.getenv("AOC_SESSION_COOKIE")
-    leaderboard_id = os.getenv("AOC_LEADERBOARD_ID")
+    leaderboard_code = os.getenv("AOC_LEADERBOARD_CODE")
     year = os.getenv("AOC_YEAR", "2025")
+
+    # Parse leaderboard code: extract owner ID for API (backward compatible)
+    # Accepts: "5123211-abc123fg" (full) or "5123211" (owner ID only)
+    owner_id = leaderboard_code.split('-')[0] if '-' in leaderboard_code else leaderboard_code
 
     # Cookie age reminders configuration
     cookie_reminders_enabled = os.getenv("AOC_COOKIE_AGE_REMINDERS", "true").lower() == "true"
@@ -105,7 +109,7 @@ async def main():
 
     api_client = AoCAPIClient(
         session_cookie=session_cookie,
-        leaderboard_id=leaderboard_id,
+        leaderboard_id=owner_id,  # Pass only owner ID for API URL
         year=year,
         use_mock=use_mock,
         user_agent=user_agent
@@ -149,7 +153,7 @@ async def main():
     handler = AsyncSocketModeHandler(app, app_token)
 
     logger.info("🎄 AoC Slack Bot is starting...")
-    logger.info(f"📊 Monitoring leaderboard: {leaderboard_id} (year {year})")
+    logger.info(f"📊 Monitoring leaderboard: {owner_id} (year {year})")
     logger.info(f"📢 Posting to channel: {channel_id}")
     if dev_mode:
         logger.info(f"⏱️  Poll interval: 60 seconds (DEV_MODE)")

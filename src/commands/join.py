@@ -11,7 +11,8 @@ def register_join_command(app: App):
         """Handle the /join-info slash command."""
         await ack()
 
-        leaderboard_id = os.getenv("AOC_LEADERBOARD_ID", "unknown")
+        # Get full join code for display (backward compatible with owner ID only)
+        leaderboard_code = os.getenv("AOC_LEADERBOARD_CODE", "unknown")
         year = os.getenv("AOC_YEAR", "2025")
 
         blocks = [
@@ -26,7 +27,7 @@ def register_join_command(app: App):
                     "text": f"Join our private leaderboard and compete with the team!\n\n"
                             f"*Steps to join:*\n"
                             f"1. Go to <https://adventofcode.com/{year}/leaderboard/private|Advent of Code Private Leaderboards>\n"
-                            f"2. Enter this code: `{leaderboard_id}`\n"
+                            f"2. Enter this code: `{leaderboard_code}`\n"
                             f"3. Start solving puzzles! 🎅"
                 }
             },
@@ -41,6 +42,6 @@ def register_join_command(app: App):
 
         await respond({
             "response_type": "ephemeral",
-            "text": f"Join our Advent of Code {year} leaderboard! Code: {leaderboard_id}",
+            "text": f"Join our Advent of Code {year} leaderboard! Code: {leaderboard_code}",
             "blocks": blocks
         })
